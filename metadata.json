@@ -1,0 +1,6 @@
+{
+  "name": "GameTrackr",
+  "description": "A backend platform to manage video game libraries, track progress, and organize gaming sessions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
