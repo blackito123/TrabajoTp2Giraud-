@@ -37,11 +37,17 @@ const options = {
   // files containing annotations
 };
 const swaggerSpec = swaggerJsdoc(options);
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.3.0/swagger-ui.min.css";
+const customOptions = {
+  customCssUrl: CSS_URL,
+  customSiteTitle: "Documentación API GameTrackr"
+};
+
 const setupSwagger = (app) => {
   app.use(
     "/api-docs",
     swaggerUi.serve,
-    swaggerUi.setup(swaggerSpec, { customSiteTitle: "Documentaci\xF3n API GameTrackr" })
+    swaggerUi.setup(swaggerSpec, customOptions)
   );
 };
 export {
