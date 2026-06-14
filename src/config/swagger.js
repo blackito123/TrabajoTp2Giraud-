@@ -1,5 +1,7 @@
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import path from "path";
+
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -33,8 +35,10 @@ const options = {
       }
     ]
   },
-  apis: ["./src/routes/*.js", "./src/models/*.js"]
-  // files containing annotations
+  apis: [
+    path.join(process.cwd(), "src/routes/*.js"),
+    path.join(process.cwd(), "src/models/*.js")
+  ]
 };
 const swaggerSpec = swaggerJsdoc(options);
 const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.3.0/swagger-ui.min.css";
