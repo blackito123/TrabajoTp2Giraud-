@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 export const connectDB = async () => {
   try {
-    let uri = process.env.MONGODB_URI || "mongodb+srv://blackito:<db_password>@blackito.exo6ac7.mongodb.net/gametrackr?appName=blackito";
+    let uri = process.env.MONGODB_URI || "mongodb+srv://blackito:yZ5plNxtg7IIkgHo@blackito.exo6ac7.mongodb.net/gametrackr?appName=blackito";
     
     // Limpiar quotes accidentales y espacios en blanco
     uri = uri.replace(/^["']|["']$/g, "").trim();
