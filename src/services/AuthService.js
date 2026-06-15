@@ -8,11 +8,15 @@ class AuthService {
     const { name, username, email, password } = data;
     const userExists = await this.userRepo.findByEmail(email);
     if (userExists) {
-      throw new Error("User already exists with this email");
+      const error = new Error("User already exists with this email");
+      error.statusCode = 400;
+      throw error;
     }
     const usernameExists = await this.userRepo.findByUsername(username);
     if (usernameExists) {
-      throw new Error("Username already taken");
+      const error = new Error("Username already taken");
+      error.statusCode = 400;
+      throw error;
     }
     const user = await this.userRepo.create({
       name,
@@ -42,12 +46,18 @@ class AuthService {
         token: generateToken(user._id, user.role)
       };
     } else {
-      throw new Error("Invalid email or password");
+      const error = new Error("Invalid email or password");
+      error.statusCode = 401;
+      throw error;
     }
   }
   async getMe(userId) {
     const user = await this.userRepo.findById(userId);
-    if (!user) throw new Error("User not found");
+    if (!user) {
+      const error = new Error("User not found");
+      error.statusCode = 404;
+      throw error;
+    }
     return user;
   }
 }
