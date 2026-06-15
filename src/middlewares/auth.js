@@ -5,6 +5,7 @@ const protect = async (req, res, next) => {
   if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
     try {
       token = req.headers.authorization.split(" ")[1];
+      token = token.replace(/^["']|["']$/g, ""); // Remove quotes if the user accidentally copied them from JSON
       const secret = process.env.JWT_SECRET || "default_secret";
       const decoded = jwt.verify(token, secret);
       const user = await User.findById(decoded.id).select("-password");
