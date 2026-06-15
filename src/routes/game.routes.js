@@ -35,7 +35,7 @@ const router = Router();
  *       201:
  *         description: Juego creado
  */
-router.route("/").get(getGames).post(protect, admin, createGame);
+router.route("/").get(getGames).post(protect, createGame);
 
 /**
  * @openapi
@@ -73,7 +73,7 @@ router.route("/").get(getGames).post(protect, admin, createGame);
  *       200:
  *         description: Juego actualizado
  */
-router.route("/:id").get(getGameById).put(protect, admin, updateGame);
+router.route("/:id").get(getGameById).put(protect, updateGame);
 var game_routes_default = router;
 export {
   game_routes_default as default
