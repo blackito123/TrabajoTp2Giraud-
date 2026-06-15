@@ -15,12 +15,18 @@ const router = Router();
  *           schema:
  *             type: object
  *             properties:
+ *               name:
+ *                 type: string
+ *                 example: "Alex Giraud"
  *               username:
  *                 type: string
+ *                 example: "alexgi"
  *               email:
  *                 type: string
+ *                 example: "alexgiiraud@gmail.com"
  *               password:
  *                 type: string
+ *                 example: "hola123"
  *     responses:
  *       201:
  *         description: Usuario creado exitosamente
@@ -44,8 +50,10 @@ router.post("/register", registerUser);
  *             properties:
  *               email:
  *                 type: string
+ *                 example: "alexgiiraud@gmail.com"
  *               password:
  *                 type: string
+ *                 example: "hola123"
  *     responses:
  *       200:
  *         description: Login exitoso
