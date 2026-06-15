@@ -1,46 +1,20 @@
-import swaggerJsdoc from "swagger-jsdoc";
-import swaggerUi from "swagger-ui-express";
+import fs from "fs";
 import path from "path";
+import swaggerUi from "swagger-ui-express";
 
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "API de GameTrackr",
-      version: "1.0.0",
-      description: "[\u2190 Volver a la p\xE1gina principal](/)\n\nDocumentaci\xF3n oficial de la API para la plataforma backend GameTrackr."
-    },
-    servers: [
-      {
-        url: "/api",
-        description: "API V1 (Ruta relativa)"
-      },
-      {
-        url: "http://localhost:3000/api",
-        description: "Servidor de Desarrollo Local"
-      }
-    ],
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: "http",
-          scheme: "bearer",
-          bearerFormat: "JWT"
-        }
-      }
-    },
-    security: [
-      {
-        bearerAuth: []
-      }
-    ]
-  },
-  apis: [
-    path.join(process.cwd(), "src/routes/*.js"),
-    path.join(process.cwd(), "src/models/*.js")
-  ]
-};
-const swaggerSpec = swaggerJsdoc(options);
+let swaggerSpec = {};
+try {
+  const filePath = path.join(process.cwd(), "swagger.json");
+  if (fs.existsSync(filePath)) {
+    const fileContent = fs.readFileSync(filePath, "utf8");
+    swaggerSpec = JSON.parse(fileContent);
+  } else {
+    console.warn("swagger.json not found, regenerating...");
+  }
+} catch (error) {
+  console.error("Error reading swagger.json", error);
+}
+
 const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.3.0/swagger-ui.min.css";
 const customOptions = {
   customCssUrl: CSS_URL,
