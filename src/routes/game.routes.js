@@ -31,6 +31,9 @@ const router = Router();
  *                 type: string
  *               genre:
  *                 type: string
+ *               releaseDate:
+ *                 type: string
+ *                 format: date
  *     responses:
  *       201:
  *         description: Juego creado
