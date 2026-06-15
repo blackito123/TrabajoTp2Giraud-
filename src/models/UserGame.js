@@ -5,7 +5,7 @@ const userGameSchema = new mongoose.Schema(
     game: { type: mongoose.Schema.Types.ObjectId, ref: "Game", required: true },
     status: {
       type: String,
-      enum: ["Backlog", "Playing", "Completed", "Abandoned", "Want to Play"],
+      enum: ["Pendiente", "Jugando", "Completado", "Abandonado", "Quiero Jugar"],
       required: true
     },
     hoursPlayed: { type: Number, default: 0 },

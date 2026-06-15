@@ -30,6 +30,8 @@ router.use(protect);
  *                 type: string
  *               status:
  *                 type: string
+ *                 enum: ["Pendiente", "Jugando", "Completado", "Abandonado", "Quiero Jugar"]
+ *                 example: "Jugando"
  *     responses:
  *       201:
  *         description: Juego añadido a la biblioteca
@@ -59,6 +61,8 @@ router.route("/").get(getLibrary).post(addToLibrary);
  *             properties:
  *               status:
  *                 type: string
+ *                 enum: ["Pendiente", "Jugando", "Completado", "Abandonado", "Quiero Jugar"]
+ *                 example: "Jugando"
  *               rating:
  *                 type: number
  *     responses:
