@@ -1,6 +1,6 @@
 {
   "name": "GameTrackr",
-  "description": "A backend platform to manage video game libraries, track progress, and organize gaming sessions.",
+  "description": "Una plataforma backend para gestionar bibliotecas de videojuegos, realizar un seguimiento del progreso y organizar sesiones de juego.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -1,22 +1,19 @@
 import { Router } from "express";
-import { getLibrary, addToLibrary, updateLibraryItem, removeFromLibrary } from "../controllers/LibraryController";
-import { protect } from "../middlewares/auth";
+import { getGames, getGameById, createGame, updateGame } from "../controllers/GameController";
+import { protect, admin } from "../middlewares/auth";
 const router = Router();
-router.use(protect);
 /**
  * @openapi
- * /library:
+ * /games:
  *   get:
- *     summary: Obtener la biblioteca del usuario
- *     tags: [Library]
- *     security:
- *       - bearerAuth: []
+ *     summary: Obtener la lista de juegos
+ *     tags: [Games]
  *     responses:
  *       200:
- *         description: Lista de juegos en la biblioteca
+ *         description: Lista de juegos
  *   post:
- *     summary: Añadir un juego a la biblioteca
- *     tags: [Library]
+ *     summary: Crear un nuevo juego
+ *     tags: [Games]
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -26,24 +23,41 @@ router.use(protect);
  *           schema:
  *             type: object
  *             properties:
- *               gameId:
+ *               title:
  *                 type: string
- *               status:
+ *               description:
  *                 type: string
- *                 enum: ["Backlog", "Playing", "Completed", "Abandoned", "Want to Play"]
- *                 example: "Playing"
+ *               platform:
+ *                 type: string
+ *               genre:
+ *                 type: string
+ *               releaseDate:
+ *                 type: string
+ *                 format: date
  *     responses:
  *       201:
- *         description: Juego añadido a la biblioteca
+ *         description: Juego creado
  */
-router.route("/").get(getLibrary).post(addToLibrary);
+router.route("/").get(getGames).post(protect, createGame);
 
 /**
  * @openapi
- * /library/{id}:
+ * /games/{id}:
+ *   get:
+ *     summary: Obtener detalles de un juego
+ *     tags: [Games]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Detalles del juego
  *   put:
- *     summary: Actualizar estado de un juego en la biblioteca
- *     tags: [Library]
+ *     summary: Actualizar un juego
+ *     tags: [Games]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -58,33 +72,12 @@ router.route("/").get(getLibrary).post(addToLibrary);
  *         application/json:
  *           schema:
  *             type: object
- *             properties:
- *               status:
- *                 type: string
- *                 enum: ["Backlog", "Playing", "Completed", "Abandoned", "Want to Play"]
- *                 example: "Playing"
- *               rating:
- *                 type: number
  *     responses:
  *       200:
- *         description: Biblioteca actualizada
- *   delete:
- *     summary: Eliminar un juego de la biblioteca
- *     tags: [Library]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Juego eliminado de la biblioteca
+ *         description: Juego actualizado
  */
-router.route("/:id").put(updateLibraryItem).delete(removeFromLibrary);
-var library_routes_default = router;
+router.route("/:id").get(getGameById).put(protect, updateGame);
+var game_routes_default = router;
 export {
-  library_routes_default as default
+  game_routes_default as default
 };
