@@ -34,6 +34,8 @@ const router = Router();
  *               releaseDate:
  *                 type: string
  *                 format: date
+ *               multiplayer:
+ *                 type: boolean
  *     responses:
  *       201:
  *         description: Juego creado
@@ -84,6 +86,8 @@ router.route("/").get(getGames).post(protect, createGame);
  *               releaseDate:
  *                 type: string
  *                 format: date
+ *               multiplayer:
+ *                 type: boolean
  *     responses:
  *       200:
  *         description: Juego actualizado
