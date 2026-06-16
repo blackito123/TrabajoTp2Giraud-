@@ -9,13 +9,31 @@ class LibraryService {
     return this.libraryRepo.findByUser(userId);
   }
   async addToLibrary(userId, data) {
-    const { gameId, status, hoursPlayed, personalRating, review } = data;
-    const game = await this.gameRepo.findById(gameId);
+    const { gameId, status, hoursPlayed, personalRating, review, title, description, releaseDate, genres, platform } = data;
+    
+    let targetGameId = gameId;
+
+    if (!targetGameId) {
+      if (!title || !releaseDate) {
+        throw new Error("Game title and releaseDate are required if gameId is not provided");
+      }
+      const newGame = await this.gameRepo.create({
+        title,
+        description,
+        releaseDate,
+        genres,
+        platforms: platform ? [platform] : []
+      });
+      targetGameId = newGame._id;
+    }
+
+    const game = await this.gameRepo.findById(targetGameId);
     if (!game) throw new Error("Game not found");
+    
     return this.libraryRepo.create({
       user: userId,
-      game: gameId,
-      status,
+      game: targetGameId,
+      status: status || "Quiero Jugar",
       hoursPlayed,
       personalRating,
       review
