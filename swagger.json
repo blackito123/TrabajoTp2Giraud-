@@ -1,0 +1,34 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de GameTrackr",
+    "version": "1.0.0",
+    "description": "[← Volver a la página principal](/)\n\nDocumentación oficial de la API para la plataforma backend GameTrackr."
+  },
+  "servers": [
+    {
+      "url": "/api",
+      "description": "API V1 (Ruta relativa)"
+    },
+    {
+      "url": "http://localhost:3000/api",
+      "description": "Servidor de Desarrollo Local"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {},
+  "tags": []
+}
