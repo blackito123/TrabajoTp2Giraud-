@@ -7,7 +7,6 @@ import { setupSwagger } from "./src/config/swagger";
 import authRoutes from "./src/routes/auth.routes";
 import gameRoutes from "./src/routes/game.routes";
 import libraryRoutes from "./src/routes/library.routes";
-import sessionRoutes from "./src/routes/session.routes";
 import statsRoutes from "./src/routes/stats.routes";
 import { errorHandler } from "./src/middlewares/errorHandler";
 dotenv.config();
@@ -22,7 +21,6 @@ async function startServer() {
   app.use("/api/auth", authRoutes);
   app.use("/api/games", gameRoutes);
   app.use("/api/library", libraryRoutes);
-  app.use("/api/sessions", sessionRoutes);
   app.use("/api/stats", statsRoutes);
   app.use(errorHandler);
   if (process.env.NODE_ENV !== "production") {
