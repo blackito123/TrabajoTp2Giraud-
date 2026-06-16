@@ -28,25 +28,13 @@ router.use(protect);
  *             properties:
  *               gameId:
  *                 type: string
- *                 description: ID de un juego existente (opcional si se proveen los otros datos)
- *               title:
- *                 type: string
- *                 description: Título del nuevo juego
- *               description:
- *                 type: string
- *               releaseDate:
- *                 type: string
- *                 format: date
- *               genres:
- *                 type: array
- *                 items:
- *                   type: string
- *               platform:
- *                 type: string
  *               status:
  *                 type: string
  *                 enum: ["Pendiente", "Jugando", "Completado", "Abandonado", "Quiero Jugar"]
  *                 example: "Jugando"
+ *               hoursPlayed:
+ *                 type: number
+ *                 example: 5
  *     responses:
  *       201:
  *         description: Juego añadido a la biblioteca
@@ -78,6 +66,9 @@ router.route("/").get(getLibrary).post(addToLibrary);
  *                 type: string
  *                 enum: ["Pendiente", "Jugando", "Completado", "Abandonado", "Quiero Jugar"]
  *                 example: "Jugando"
+ *               hoursPlayed:
+ *                 type: number
+ *                 example: 10
  *               rating:
  *                 type: number
  *     responses:
