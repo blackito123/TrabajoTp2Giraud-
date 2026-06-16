@@ -72,6 +72,18 @@ router.route("/").get(getGames).post(protect, createGame);
  *         application/json:
  *           schema:
  *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               platform:
+ *                 type: string
+ *               genre:
+ *                 type: string
+ *               releaseDate:
+ *                 type: string
+ *                 format: date
  *     responses:
  *       200:
  *         description: Juego actualizado
