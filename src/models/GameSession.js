@@ -10,8 +10,8 @@ const gameSessionSchema = new mongoose.Schema(
     platform: { type: String },
     status: {
       type: String,
-      enum: ["Scheduled", "In Progress", "Finished", "Cancelled"],
-      default: "Scheduled"
+      enum: ["Programada", "En Curso", "Finalizada", "Cancelada"],
+      default: "Programada"
     },
     description: { type: String },
     maxPlayers: { type: Number, default: 4 }
