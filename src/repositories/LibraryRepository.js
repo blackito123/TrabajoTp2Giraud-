@@ -9,8 +9,11 @@ class LibraryRepository {
   async findById(id) {
     return UserGame.findById(id);
   }
+  async findByGameAndUser(gameId, userId) {
+    return UserGame.findOne({ game: gameId, user: userId });
+  }
   async update(id, updateData) {
-    return UserGame.findByIdAndUpdate(id, updateData, { new: true });
+    return UserGame.findByIdAndUpdate(id, updateData, { new: true, runValidators: true });
   }
   async remove(id) {
     return UserGame.findByIdAndDelete(id);

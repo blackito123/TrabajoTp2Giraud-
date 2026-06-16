@@ -22,20 +22,38 @@ class LibraryService {
     });
   }
   async updateLibraryItem(userId, id, data) {
-    const item = await this.libraryRepo.findById(id);
-    if (!item) throw new Error("Library entry not found");
-    if (item.user.toString() !== userId) {
-      throw new Error("Not authorized to update this library item");
+    let item = await this.libraryRepo.findById(id);
+    if (!item) {
+      item = await this.libraryRepo.findByGameAndUser(id, userId);
     }
-    return this.libraryRepo.update(id, data);
+    if (!item) {
+      const error = new Error("Library entry not found");
+      error.statusCode = 404;
+      throw error;
+    }
+    if (item.user.toString() !== userId.toString()) {
+      const error = new Error("Not authorized to update this library item");
+      error.statusCode = 403;
+      throw error;
+    }
+    return this.libraryRepo.update(item._id, data);
   }
   async removeFromLibrary(userId, id) {
-    const item = await this.libraryRepo.findById(id);
-    if (!item) throw new Error("Library entry not found");
-    if (item.user.toString() !== userId) {
-      throw new Error("Not authorized to remove this library item");
+    let item = await this.libraryRepo.findById(id);
+    if (!item) {
+      item = await this.libraryRepo.findByGameAndUser(id, userId);
     }
-    return this.libraryRepo.remove(id);
+    if (!item) {
+      const error = new Error("Library entry not found");
+      error.statusCode = 404;
+      throw error;
+    }
+    if (item.user.toString() !== userId.toString()) {
+      const error = new Error("Not authorized to remove this library item");
+      error.statusCode = 403;
+      throw error;
+    }
+    return this.libraryRepo.remove(item._id);
   }
 }
 export {
