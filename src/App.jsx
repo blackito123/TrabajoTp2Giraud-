@@ -40,10 +40,6 @@ function App() {
             /* @__PURE__ */ jsx("p", { className: "text-zinc-700 text-sm leading-relaxed", children: "Cat\xE1logo central de videojuegos para colecciones personales con registro de horas jugadas, estados y valoraciones." })
           ] }),
           /* @__PURE__ */ jsxs("div", { children: [
-            /* @__PURE__ */ jsx("h3", { className: "text-sm uppercase tracking-wider text-zinc-500 font-semibold mb-2", children: "Sesiones" }),
-            /* @__PURE__ */ jsx("p", { className: "text-zinc-700 text-sm leading-relaxed", children: "Gesti\xF3n de sesiones multijugador, permitiendo crear, agendar e ingresar a eventos grupales para jugar con otros miembros." })
-          ] }),
-          /* @__PURE__ */ jsxs("div", { children: [
             /* @__PURE__ */ jsx("h3", { className: "text-sm uppercase tracking-wider text-zinc-500 font-semibold mb-2", children: "Estad\xEDsticas" }),
             /* @__PURE__ */ jsx("p", { className: "text-zinc-700 text-sm leading-relaxed", children: "Endpoints que devuelven resultados estad\xEDsticos con base en todos los logros de la galer\xEDa e historial propio." })
           ] })
